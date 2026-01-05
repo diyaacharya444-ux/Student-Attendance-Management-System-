@@ -77,33 +77,33 @@ $dbo->conn->exec("CREATE TABLE IF NOT EXISTS attendance_details (
 // Students
 $dbo->conn->exec("INSERT INTO student_details (roll_no, name) VALUES
 ('BCSIT01','Ayush Dhakal'),
-('BCSIT02','Ajaya'),
-('BCSIT03','Anjali Dhakal'),
-('BCSIT04','Ayush Dhakal'),
-('BCSIT05','Abishek Dhakal'),
-('BCSIT06','Ayush Dhakal'),
-('BCSIT07','Bibek Dhakal'),
+('BCSIT02','Ajaya  Chanda'),
+('BCSIT03','Anjali Ayer'),
+('BCSIT04','Anuska Adhikari'),
+('BCSIT05','Arjun Kumar Sharma'),
+('BCSIT06','Avishek Karki'),
+('BCSIT07','Bibek Gahire'),
 ('BCSIT08','Bikash Khanal'),
-('BCSIT09','Ayush Dhakal'),
-('BCSIT10','Ayush Dhakal'),
-('BCSIT11','Damodar Dhakal'),
-('BCSIT12','Ayush Dhakal'),
+('BCSIT09','Binita KC'),
+('BCSIT10','Birendra Bohara'),
+('BCSIT11','Damodar Joshi'),
+('BCSIT12','Darshan Shakya'),
 ('BCSIT13','Diya Acharya'),
-('BCSIT14','Ganesh Dhakal'),
-('BCSIT15','Ayush Dhakal'),
-('BCSIT16','Ayush Dhakal'),
-('BCSIT17','Ayush Dhakal'),
-('BCSIT18','Ayush Dhakal'),
-('BCSIT19','Ayush Dhakal'),
-('BCSIT20','Ayush Dhakal')");
+('BCSIT14','Ganesh Kandel'),
+('BCSIT15','Himal Singh Kumwar'),
+('BCSIT16','Janak Chand'),
+('BCSIT17','Krispa Chaudhary'),
+('BCSIT18','Nishan Khanal'),
+('BCSIT19','Prabal Basnet'),
+('BCSIT20','Kushal Ghimire')");
 
 // Faculty
 $dbo->conn->exec("INSERT INTO faculty_details (user_name, password, name) VALUES
 ('ND','123','Nirajan Dhaurali'),
 ('AS','123','Abin Shrestha'),
-('POM','123','Bikesh Aadhikari'),
-('R','123','Bikesh Aadhikari'),
-('D','123','Bikesh Aadhikari')");
+('POM','123','Abimanu Bashyal'),
+('R','123','Rajan Pokharel'),
+('D','123','Dinesh Bhandari')");
 
 // Sessions
 $dbo->conn->exec("INSERT INTO session_details (year, term) VALUES
@@ -117,4 +117,55 @@ $dbo->conn->exec("INSERT INTO course_details (title, code, credit) VALUES
 ('POM','CO333',4),
 ('DBMS','CO444',5),
 ('Math','CO555',6)");
+
+// iterate over all the 20 student
+$c = "insert into course_registration
+(student_id, course_id, session_id)
+values
+(:sid,:cid,:sessid)";
+$s=$dbo->conn->prepare($c);
+
+;
+for($i=1;$i<=20;$i++)
+{
+    for($j=0; $j<5;$j++)
+    {
+        $cid=rand(5,5)
+    }
+try{
+
+    $s->execute([":sid"=>$i,":cid"=>$cid,":sessid"=>,1]);
+}
+catch(PDOException $pe){
+
+}
+//repeat for session 2
+$cid=rand(6,6);
+try{
+     $s->execute([":sid"=>$i,":cid"=>$cid,":sessid"=>,2]);
+}
+catch(PDOException $pe){
+
+}
+// if any record already there in the table in the table delete them
+clearTable($dbo,"course_allotment");
+$c="insert into course_allotment
+(faculty_id,course_id,session_id)
+values
+(:fid,:cid,:sessid)";
+$s=$dbo->conn->prepare($c);
+for($i=1;$i<=5;$i++){
+    for($j=0;$j<2;$j++){
+        $cid=rand(1,6);
+        
+    }
+    try{
+
+    $s->execute([":sid"=>$i,":cid"=>$cid,":sessid"=>,1]);
+}
+catch(PDOException $pe){
+
+}
+$cid=rand(1,)
+}
 ?>
